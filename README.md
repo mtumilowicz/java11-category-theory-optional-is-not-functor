@@ -33,18 +33,18 @@ form a functor.
     Function<Integer, String> toString = i -> nonNull(i) ? String.valueOf(i) : "null";
     Function<Integer, String> composition = nullFunction.andThen(toString);
     ```
-* java `Optional` does not follow composition rules
+* java `Optional` does **not follow** composition rules
     ```
     assertNotEquals(Optional.of(1).map(composition), 
           Optional.of(1).map(nullFunction).map(toString));
     ```
-* java `Optional` follows composition rules when treated
+* java `Optional` **follows** composition rules when treated
 as stream
     ```
     assertEquals(Optional.of(1).stream().map(composition).findAny(), 
             Optional.of(1).stream().map(nullFunction).map(toString).findAny());
     ```
-* vavr `Option` follows composition rules
+* vavr `Option` **follows** composition rules
     ```
     assertEquals(Option.of(1).map(composition), 
             Option.of(1).map(nullFunction).map(toString));
