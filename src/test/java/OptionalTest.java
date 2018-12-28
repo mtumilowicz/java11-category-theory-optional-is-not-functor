@@ -12,24 +12,18 @@ import static org.junit.Assert.assertNotEquals;
  * Created by mtumilowicz on 2018-12-28.
  */
 public class OptionalTest {
+
+    private Function<Integer, Integer> nullFunction = i -> null;
+    private Function<Integer, String> toString = i -> nonNull(i) ? String.valueOf(i) : "null";
+    private Function<Integer, String> composition = nullFunction.andThen(toString);
     
     @Test
-    public void breaksComposition() {
-        Function<Integer, Integer> nullFunction = i -> null;
-        Function<Integer, String> toString = i -> nonNull(i) ? String.valueOf(i) : "null";
-
-        Function<Integer, String> composition = nullFunction.andThen(toString);
-
+    public void breaksCompositionRules() {
         assertNotEquals(Optional.of(1).map(composition), Optional.of(1).map(nullFunction).map(toString));
     }
 
     @Test
-    public void followsComposition() {
-        Function<Integer, Integer> nullFunction = i -> null;
-        Function<Integer, String> toString = i -> nonNull(i) ? String.valueOf(i) : "null";
-
-        Function<Integer, String> composition = nullFunction.andThen(toString);
-
+    public void followsCompositionRules() {
         assertEquals(Option.of(1).map(composition), Option.of(1).map(nullFunction).map(toString));
     }
 }
