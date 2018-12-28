@@ -23,7 +23,7 @@ argument represents a **function on types**. But can we
 turn `Optional` into a functor?
 
 Type constructor `Optional` together with the function 
-`fmap :: (a -> b) -> Optional a -> Optional b` should 
+`map :: (a -> b) -> Optional a -> Optional b` should 
 form a functor.
 
 # project description
