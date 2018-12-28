@@ -15,6 +15,17 @@ That is, `F` preserves:
 * identity arrows, 
 * and compostion.
 
+# programming
+`Optional` itself is not a type, it’s a type constructor. 
+You have to give it a type argument, like `Integer` or `Boolean`, 
+in order to turn it into a type. `Optional` without any 
+argument represents a **function on types**. But can we 
+turn `Optional` into a functor?
+
+Type constructor `Optional` together with the function 
+`fmap :: (a -> b) -> Optional a -> Optional b` should 
+form a functor.
+
 # project description
 * define functions and its composition
     ```
