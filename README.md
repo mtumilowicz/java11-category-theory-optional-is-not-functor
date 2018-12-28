@@ -32,3 +32,14 @@ That is, `F` preserves:
     assertEquals(Option.of(1).map(composition), 
             Option.of(1).map(nullFunction).map(toString));
     ```
+
+# conclusions
+Conclusions are quite serious - please think about
+such analogy:
+```
+list.stream().map(f).map(g)
+```
+is not the same as
+```
+list.stream().map(f.andThen(g))
+```
