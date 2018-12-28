@@ -27,19 +27,14 @@ That is, `F` preserves:
     assertNotEquals(Optional.of(1).map(composition), 
           Optional.of(1).map(nullFunction).map(toString));
     ```
+* java `Optional` follows composition rules when treated
+as stream
+    ```
+    assertEquals(Optional.of(1).stream().map(composition).findAny(), 
+            Optional.of(1).stream().map(nullFunction).map(toString).findAny());
+    ```
 * vavr `Option` follows composition rules
     ```
     assertEquals(Option.of(1).map(composition), 
             Option.of(1).map(nullFunction).map(toString));
     ```
-
-# conclusions
-Conclusions are quite serious - please think about
-such analogy:
-```
-list.stream().map(f).map(g)
-```
-is not the same as
-```
-list.stream().map(f.andThen(g))
-```
