@@ -51,3 +51,60 @@ as stream
     assertEquals(Option.of(1).map(composition), 
             Option.of(1).map(nullFunction).map(toString));
     ```
+    
+# proof that vavr Option is functor
+```
+map :: (a -> b) -> Option a -> Option b
+
+map _ None = None
+map f (Some x) = Some (f x)
+
+@Override
+default <U> Option<U> map(Function<? super T, ? extends U> mapper) {
+    Objects.requireNonNull(mapper, "mapper is null");
+    return isEmpty() ? none() : some(mapper.apply(get()));
+}
+```
+
+1. `map id = id`
+    * `None`
+        ```
+          map id None 
+        = { definition of map }
+          None 
+        = { definition of id }
+          id None
+        ```
+    * `Some`
+        ```
+          map id (Some x) 
+        = { definition of map }
+          Some (id x) 
+        = { definition of id }
+          Some x
+        = { definition of id }
+          id (Some x)
+        ```
+1. `map (g . f) = map g . map f`
+    * `None`
+        ```
+          map (g . f) None 
+        = { definition of map }
+          None 
+        = { definition of map }
+          map g None
+        = { definition of map }
+          map g (map f None)
+        ```
+    * `Some`
+        ```
+          map (g . f) (Some x)
+        = { definition of map }
+          Some ((g . f) x)
+        = { definition of map }
+          map g (Some (f x))
+        = { definition of map }
+          map g (map f (Some x))
+        = { definition of composition }
+          (map g . map f) (Some x)
+        ```
