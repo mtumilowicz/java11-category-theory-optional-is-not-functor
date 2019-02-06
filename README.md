@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/mtumilowicz/java11-optional-is-not-functor.svg?branch=master)](https://travis-ci.com/mtumilowicz/java11-optional-is-not-functor)
+[![Build Status](https://travis-ci.com/mtumilowicz/java11-category-theory-optional-is-not-functor.svg?branch=master)](https://travis-ci.com/mtumilowicz/java11-category-theory-optional-is-not-functor)
 
 # java11-optional-is-not-functor
 _Reference_: https://bartoszmilewski.com/2015/01/20/functors/  
